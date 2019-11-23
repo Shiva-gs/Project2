@@ -1,0 +1,29 @@
+/* !
+ * Start Bootstrap - The Big Picture (https://startbootstrap.com/template-overviews/the-big-picture)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-the-big-picture/blob/master/LICENSE)
+ */
+/* body {
+  background: url('https://images.trvl-media.com/media/content/expus/graphics/launch/home/tvly/150324_flights-hero-image_1330x742.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+} */
+
+
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
