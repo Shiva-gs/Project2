@@ -1,8 +1,9 @@
 After you pull the latest code please follow below instructions:
 
 1. Edit setup.py to include GoogleAPI key
-2. Execute setup.py for one time which renders data and stores in MongoDB
+2. Execute setup.py for one time dataset up, which renders data for all location and target types and stores in MongoDB
 3. Execute app.py 
 4. Copy the local host and execute from browser, note - please clean up session to reflect latest change if you modify .jsp
 5. Upon Location and Category collection - json is printed in console log
+
 
