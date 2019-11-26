@@ -1,1 +1,182 @@
-{"attractions": ["Wat Phra Chetuphon", "Temple of Dawn (Wat Arun)", "Chatuchak Weekend Market", "Jim Thompson House", "Temple of the Emerald Buddha (Wat Phra Kaew)", "Temple of the Golden Buddha (Wat Traimit)", "The Golden Mount (Wat Saket)", "Siam Paragon", "BTS Skytrain", "Chao Phraya River", "The Grand Palace", "Terminal 21", "King Power Mahanakhon", "Lumpini Park", "Snake Farm (Queen Saovabha Memorial Institute)", "Asiatique The Riverfront", "Safari World", "Rajadamnern Thai Boxing Stadium", "ICONSIAM", "Khlong Lat Mayom Floating Market", "Museum of Contemporary Art (MOCA)", "Wat Pak Nam", "Train Night Market Ratchada", "Wat Benchamabophit (The Marble Temple)", "Bangkok Art & Culture Centre (BACC)", "Art in Paradise Bangkok", "CentralWorld", "Platinum Fashion Mall", "Chatuchak Flower Market", "Emporium and EmQuartier"], "reviews": ["50,143 reviews", "20,273 reviews", "17,143 reviews", "13,939 reviews", "15,593 reviews", "7,969 reviews", "4,922 reviews", "10,152 reviews", "48,640 reviews", "8,188 reviews", "34,669 reviews", "6,042 reviews", "426 reviews", "7,318 reviews", "1,556 reviews", "9,992 reviews", "3,033 reviews", "567 reviews", "879 reviews", "501 reviews", "1,011 reviews", "429 reviews", "1,144 reviews", "1,380 reviews", "1,095 reviews", "686 reviews", "5,648 reviews", "3,319 reviews", "1,196 reviews", "1,511 reviews"]}
+[
+    {
+      "attractions": "Wat Phra Chetuphon",
+      "lat": 13.75613,
+      "long": 100.6101,
+      "reviews": "50,143 reviews"
+    },
+    {
+      "attractions": "Temple of Dawn (Wat Arun)",
+      "lat": 13.74349,
+      "long": 100.489067,
+      "reviews": "20,273 reviews"
+    },
+    {
+      "attractions": "Chatuchak Weekend Market",
+      "lat": 13.8288,
+      "long": 100.55988,
+      "reviews": "17,143 reviews"
+    },
+    {
+      "attractions": "Jim Thompson House",
+      "lat": 13.7493,
+      "long": 100.5282,
+      "reviews": "13,939 reviews"
+    },
+    {
+      "attractions": "Temple of the Emerald Buddha (Wat Phra Kaew)",
+      "lat": 13.7516,
+      "long": 100.4927,
+      "reviews": "15,593 reviews"
+    },
+    {
+      "attractions": "Temple of the Golden Buddha(Wat Traimit)",
+      "lat": 13.73338,
+      "long": 100.51377,
+      "reviews": "7,969 reviews"
+    },
+    {
+      "attractions": "The Golden Mount (Wat Saket)",
+      "lat": 13.74747,
+      "long": 100.50657,
+      "reviews": "4,922 reviews"
+    },
+    {
+      "attractions": "Siam Paragon",
+      "lat": 13.74544,
+      "long": 100.53534,
+      "reviews": "10,152 reviews"
+    },
+    {
+      "attractions": "BTS Skytrain",
+      "lat": 13.8015,
+      "long": 100.5523,
+      "reviews": "48,640 reviews"
+    },
+    {
+      "attractions": "Chao Phraya River",
+      "lat": 13.70411,
+      "long": 100.50853,
+      "reviews": "8,188 reviews"
+    },
+    {
+      "attractions": "The Grand Palace",
+      "lat": 13.77731,
+      "long": 100.39321,
+      "reviews": "34,669 reviews"
+    },
+    {
+      "attractions": "Terminal 21",
+      "lat": 13.81404,
+      "long": 100.60784,
+      "reviews": "6,042 reviews"
+    },
+    {
+      "attractions": "King Power Mahanakhon",
+      "lat": 13.75396,
+      "long": 100.50224,
+      "reviews": "426 reviews"
+    },
+    {
+      "attractions": "Lumpini Park",
+      "lat": 13.77115,
+      "long": 100.72425,
+      "reviews": "7,318 reviews"
+    },
+    {
+      "attractions": "Snake Farm (Queen Saovabha Memorial Institute)",
+      "lat": 13.73042,
+      "long": 100.53422,
+      "reviews": "1,556 reviews"
+    },
+    {
+      "attractions": "Asiatique The Riverfront",
+      "lat": 13.70257,
+      "long": 100.50293,
+      "reviews": "9,992 reviews"
+    },
+    {
+      "attractions": "Safari World",
+      "lat": 13.90575,
+      "long": 100.69769,
+      "reviews": "3,033 reviews"
+    },
+    {
+      "attractions": "Rajadamnern Thai Boxing Stadium",
+      "lat": 13.75786,
+      "long": 100.50614,
+      "reviews": "567 reviews"
+    },
+    {
+      "attractions": "ICONSIAM",
+      "lat": 13.7254,
+      "long": 100.50968,
+      "reviews": "879 reviews"
+    },
+    {
+      "attractions": "Khlong Lat Mayom Floating Market",
+      "lat": 13.76549,
+      "long": 100.40933,
+      "reviews": "501 reviews"
+    },
+    {
+      "attractions": "Museum of Contemporary Art (MOCA)",
+      "lat": 13.80986,
+      "long": 100.54815,
+      "reviews": "1,011 reviews"
+    },
+    {
+      "attractions": "Wat Pak Nam",
+      "lat": 13.72138,
+      "long": 100.47034,
+      "reviews": "429 reviews"
+    },
+    {
+      "attractions": "Train Night Market Ratchada",
+      "lat": 13.80008,
+      "long": 100.57462,
+      "reviews": "1,144 reviews"
+    },
+    {
+      "attractions": "Wat Benchamabophit(The Marble Temple)",
+      "lat": 13.7666,
+      "long": 100.5141,
+      "reviews": "1,380 reviews"
+    },
+    {
+      "attractions": "Bangkok Art & Culture Centre (BACC)",
+      "lat": 13.7468,
+      "long": 100.5302,
+      "reviews": "1,095 reviews"
+    },
+    {
+      "attractions": "Art in Paradise Bangkok",
+      "lat": 13.7665,
+      "long": 100.5694,
+      "reviews": "686 reviews"
+    },
+    {
+      "attractions": "CentralWorld",
+      "lat": 13.7466,
+      "long": 100.5393,
+      "reviews": "5,648 reviews"
+    },
+    {
+      "attractions": "Platinum Fashion Mall",
+      "lat": 13.7503,
+      "long": 100.5391,
+      "reviews": "3,319 reviews"
+    },
+    {
+      "attractions": "Chatuchak Flower Market",
+      "lat": 13.7974,
+      "long": 100.5437,
+      "reviews": "1,196 reviews"
+    },
+    {
+      "attractions": "Emporium and EmQuartier",
+      "lat": 13.7319,
+      "long": 100.5696,
+      "reviews": "1,511 reviews"
+    }
+  ]
