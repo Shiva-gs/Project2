@@ -1,1 +1,182 @@
-{"attractions": ["Burj Khalifa", "The Dubai Fountain", "The Dubai Mall", "Dubai Miracle Garden", "Global Village", "Atlantis Aquaventure Waterpark", "Dubai Frame", "Burj Al Arab", "La Mer", "Ski Dubai", "Dubai Creek", "Dubai Aquarium & Underwater Zoo", "Mall of the Emirates", "Wild Wadi Waterpark", "The Lost Chambers Aquarium", "Souk Madinat Jumeirah", "Motiongate Dubai", "Kite Beach", "Jumeirah Public Beach", "Burj Khalifa - At The Top", "LEGOLAND Dubai", "Dolphin Bay", "Dubai Parks and Resorts", "Dubai Festival City Mall", "Pier 7", "Bur Dubai Abra Dock", "Palm Islands", "Al Mamzar Beach Park", "Dubai Marina", "Al Seef"], "reviews": ["72,476 reviews", "71,277 reviews", "29,315 reviews", "6,699 reviews", "4,419 reviews", "16,073 reviews", "2,252 reviews", "11,895 reviews", "1,641 reviews", "9,937 reviews", "9,575 reviews", "14,481 reviews", "5,005 reviews", "9,207 reviews", "5,330 reviews", "3,047 reviews", "1,063 reviews", "1,590 reviews", "4,063 reviews", "2,048 reviews", "1,207 reviews", "2,359 reviews", "643 reviews", "751 reviews", "895 reviews", "3,866 reviews", "2,539 reviews", "1,490 reviews", "1,059 reviews", "304 reviews"]}
+[
+    {
+      "attractions": "Burj Khalifa",
+      "lat": 25.1972,
+      "long": 55.2744,
+      "reviews": "72,476  reviews"
+    },
+    {
+      "attractions": "The Dubai Fountain",
+      "lat": 25.1957,
+      "long": 55.2768,
+      "reviews": "71,277 reviews"
+    },
+    {
+      "attractions": "The Dubai Mall",
+      "lat": 25.1988,
+      "long": 55.2796,
+      "reviews": "29,315  reviews"
+    },
+    {
+      "attractions": "Dubai  Miracle Garden",
+      "lat": 25.06,
+      "long": 55.2445,
+      "reviews": "6,699 reviews"
+    },
+    {
+      "attractions": "Global Village",
+      "lat": 25.0719,
+      "long": 55.3086,
+      "reviews": "4,419 reviews"
+    },
+    {
+      "attractions": "Atlantis Aquaventure Waterpark",
+      "lat": 25.1336,
+      "long": 55.12,
+      "reviews": "16,073  reviews"
+    },
+    {
+      "attractions": "Dubai  Frame",
+      "lat": 25.2356,
+      "long": 55.3004,
+      "reviews": "2,252  reviews"
+    },
+    {
+      "attractions": "Burj Al Arab",
+      "lat": 25.1413,
+      "long": 55.1853,
+      "reviews": "11,895  reviews"
+    },
+    {
+      "attractions": "La Mer",
+      "lat": 25.2276,
+      "long": 55.2566,
+      "reviews": "1,641  reviews"
+    },
+    {
+      "attractions": "Ski Dubai",
+      "lat": 25.1172,
+      "long": 55.1983,
+      "reviews": "9,937 reviews"
+    },
+    {
+      "attractions": "Dubai Creek",
+      "lat": 25.2535,
+      "long": 55.3167,
+      "reviews": "9,575  reviews"
+    },
+    {
+      "attractions": "Dubai Aquarium & Underwaterzoo",
+      "lat": 25.1975,
+      "long": 55.2785,
+      "reviews": "14,481  reviews"
+    },
+    {
+      "attractions": "Mall Of  The Emirates",
+      "lat": 25.1172,
+      "long": 55.1983,
+      "reviews": "5,005  reviews"
+    },
+    {
+      "attractions": "Wild Wadi Water Park",
+      "lat": 25.1394,
+      "long": 55.1888,
+      "reviews": "9,207 reviews"
+    },
+    {
+      "attractions": "The Lost Chambers Aquarium",
+      "lat": 25.1319,
+      "long": 55.1184,
+      "reviews": "5,330 reviews"
+    },
+    {
+      "attractions": "Soukmadinat Jumeirah",
+      "lat": 25.1332,
+      "long": 55.1866,
+      "reviews": "3,047 reviews"
+    },
+    {
+      "attractions": "Motiongate Dubai",
+      "lat": 24.9204,
+      "long": 55.0047,
+      "reviews": "1,063  reviews"
+    },
+    {
+      "attractions": "Kite Beach",
+      "lat": 25.165,
+      "long": 55.2085,
+      "reviews": "1,590 reviews"
+    },
+    {
+      "attractions": "Jumeirah Public Beach",
+      "lat": 25.1454,
+      "long": 55.1924,
+      "reviews": "4,063  reviews"
+    },
+    {
+      "attractions": "Burjkhalifa-At The Top",
+      "lat": 25.1972,
+      "long": 55.2744,
+      "reviews": "2,048 reviews"
+    },
+    {
+      "attractions": "Legoland Dubai",
+      "lat": 24.9188,
+      "long": 55.01,
+      "reviews": "1,207 reviews"
+    },
+    {
+      "attractions": "Dolphin Bay",
+      "lat": 25.1354,
+      "long": 55.1229,
+      "reviews": "2,359 reviews"
+    },
+    {
+      "attractions": "Dubai Parks And Resorts",
+      "lat": 24.9177,
+      "long": 54.9941,
+      "reviews": "643  reviews"
+    },
+    {
+      "attractions": "Dubai Festival City Mall",
+      "lat": 25.2171,
+      "long": 55.3614,
+      "reviews": "751  reviews"
+    },
+    {
+      "attractions": "Pier7",
+      "lat": 25.0762,
+      "long": 55.1388,
+      "reviews": "895  reviews"
+    },
+    {
+      "attractions": "Bur Dubai Abra Dock",
+      "lat": 25.2565,
+      "long": 55.3065,
+      "reviews": "3,866  reviews"
+    },
+    {
+      "attractions": "Palm Islands",
+      "lat": 25.0032,
+      "long": 55.0204,
+      "reviews": "2,539 reviews"
+    },
+    {
+      "attractions": "Almamzar Beach Park",
+      "lat": 25.3201,
+      "long": 55.3488,
+      "reviews": "1,490 reviews"
+    },
+    {
+      "attractions": "Dubai Marina",
+      "lat": 25.0805,
+      "long": 55.1403,
+      "reviews": "1,059 reviews"
+    },
+    {
+      "attractions": "Alseef",
+      "lat": 25.0906,
+      "long": 55.1497,
+      "reviews": "304 reviews"
+    }
+  ]
