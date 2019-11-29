@@ -9,7 +9,7 @@ function buildMap(sample)
       }
 
   var map = L.map("map", {
-    center: [40.7657325, -73.9692262],
+    center: [sample[0].geometry.location.lat, sample[0].geometry.location.lng],
     zoom: 13
   });
 
@@ -20,23 +20,26 @@ function buildMap(sample)
 }).addTo(map);
 
 // .bindPopup("<h1>" + "New York" + "</h1> <hr> <h3>Restaurant " + "The Lowell Hotel" + "</h3>")
-L.marker([40.7657325, -73.9692262])
-  .bindPopup("<h1>" + "New York" + "</h1> <hr> <h3>Restaurant " + "The Lowell Hotel" + "</h3>")
-  .addTo(map);
+//L.marker([40.7657325, -73.9692262])
+ // .bindPopup("<h1>" + "New York" + "</h1> <hr> <h3>Restaurant " + "The Lowell Hotel" + "</h3>")
+  //.addTo(map);
   
   console.log("Printed the map")
   console.log(Object.keys(sample).length);
+  //console.log(sample.geometry) 
   //sampleNames.forEach((sample) => {
     //console.log(sample);
     console.log(sample) 
-  //}
-  //for (var i = 0; i < 6; i++) {
-   
-   // var city = cities[i];
-   // L.marker(city.location)
-   //   .bindPopup("<h1>" + city.name + "</h1> <hr> <h3>Population " + city.population + "</h3>")
-   //   .addTo(myMap);
-  //}
+
+  
+    for (var i = 0; i < sample.length; i++) {
+      var city = sample[i];
+      console.log(city.geometry.location) 
+      console.log("Printed Geometry")
+      L.marker([city.geometry.location.lat, city.geometry.location.lng])
+        .bindPopup("<h1> " + city.location + " </h1> <hr> <h3> "+ " " + city.target_type + ": " + " <br>"+ city.name + " <br> " + " Rating: "+ city.rating + " </h3>")
+        .addTo(map);
+    }
 
 }
 
@@ -92,8 +95,10 @@ console.log(category);
 console.log("/citydata/"+newSample+","+ category);
   d3.json("/citydata/"+newSample+","+category).then((sampleNames) => {
     sampleNames.forEach((sample) => {
-      console.log(sample);
+      //console.log(sample);
     });
+
+    buildMap(sampleNames);
   });
 }
 
@@ -114,7 +119,7 @@ console.log(location);
   d3.json("/citydata/"+location+","+newSample).then((sampleNames) => {
 
     sampleNames.forEach((sample) => {
-      console.log(sample);
+      //console.log(sample);
       //console.log(sample.geometry.location.lat)
       //console.log(sample.geometry.location.lng) 
     });
