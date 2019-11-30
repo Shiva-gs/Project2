@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Project 2</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+<!--D3 cdn-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <script src="https://use.typekit.net/nlq1kdt.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+<style>
+* {
+  margin: 0; padding: 0;
+}
+ 
+#container {
+  overflow: hidden;
+  height: 50%;
+  background: #edeae8;
+  position: relative;
+}
+ 
+video {
+  position: absolute;
+ 
+  /* Vertical and Horizontal center*/
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#map {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 75%;
+    left: 25%;
+}
+</style>
+</head>
+
+<body>
+
+  
+
+  <!-- Navigation -->
+ 
+  <div id="container">
+    <video autoplay muted loop>
+      <source src="{{ url_for('static', filename='js/newyork.mp4') }}" type="video/mp4">
+    </video>
+  </div>
+
+  </div>
+  <!-- Page Content -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+   
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+     <h1 style="padding-top:50px; padding-bottom:50px;">New York City</h1>
+      
+     <div id="map"></div>
+     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
+     <script src="http://leafletjs.com/dist/leaflet.js"></script> 
+     <script type="text/javascript">
+       $(document).ready(function () {
+           init_map();
+        //    add_marker();
+       });
+       var map;
+
+      
+
+       function init_map() {
+
+        var tile = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+           attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+           maxZoom: 18,
+           id: "mapbox.streets",
+           accessToken: "pk.eyJ1IjoiamFtYm9uZzQ3IiwiYSI6ImNrMzZseWs0MjAzNHYzZG52Y3lybmZ3dmsifQ.2F1jTOE2UXpF1-E4gwpFeQ",
+        });
+
+        var layers = {
+            COMING_SOON: new L.LayerGroup(),
+            EMPTY: new L.LayerGroup(),
+            LOW: new L.LayerGroup(),
+            NORMAL: new L.LayerGroup(),
+            OUT_OF_ORDER: new L.LayerGroup()
+            };
+
+        var map = L.map("map", {
+            center: [40.7128, -74.0059],
+            zoom: 12,
+            layers: [
+                layers.COMING_SOON,
+                layers.EMPTY,
+                layers.LOW,
+                layers.NORMAL,
+                layers.OUT_OF_ORDER
+            ]
+            });    
+
+          
+        //     ].setView([40.7128, -74.0059], 12);})
+           
+           tile.addTo(map);
+
+        var overlays = {
+            "Attractions": layers.COMING_SOON,
+            "Restaurants": layers.EMPTY,
+            "Bars": layers.LOW,
+            "Healthy Stations": layers.NORMAL,
+            "Out of Order": layers.OUT_OF_ORDER
+            };
+
+        L.control.layers(null, overlays).addTo(map);
+       }
+   
+    //    function add_marker() {
+    //  var points = [
+    //      ["New York", 40.7128, -74.0059, "http://127.0.0.1:5000/newyork"]
+    
+    //  ];
+     
+    //  var marker = [];
+    //  var i;
+    //  for (i = 0; i < points.length; i++) {
+    //      marker[i] = new L.Marker([points[i][1], points[i][2]], {
+    //          win_url: points[i][3]
+    //      });
+    //      marker[i].addTo(myMap);
+    //      marker[i].on('click', onClick);
+    //  };
+//    }
+
+   
+
+ 
+    // <!-- The div where we will inject our map -->
+  
+  
+    // <!-- API key -->
+</script>
+    <script src="{{ url_for('static', filename='js/bideojs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  <!-- Bootstrap core JavaScript -->
+
+
+
+  <script>
+    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
+      window.location.protocol = "https";
+    }
+  </script>
+
+</body>
+
+</html>

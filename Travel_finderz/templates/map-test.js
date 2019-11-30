@@ -11,47 +11,25 @@
   <title>Project 2</title>
 
   <!-- Bootstrap core CSS -->
-
-
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-
   <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
-
-
   <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/the-big-picture.css') }}" rel="stylesheet">
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+  <!--D3 cdn-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
-  
-
-  <script src="https://use.typekit.net/nlq1kdt.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
-<style>
-* {
-  margin: 0; padding: 0;
-}
- 
-#container {
-  overflow: hidden;
-  height: 600px;
-  background: #edeae8;
-  position: relative;
-}
- 
-video {
-  position: absolute;
- 
-  /* Vertical and Horizontal center*/
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>
 </head>
 
 <body>
-
-  
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -78,13 +56,6 @@ video {
     </div>
   </nav>
 
-  <div id="container">
-    <video autoplay muted loop>
-      <source src="{{ url_for('static', filename='js/newyork.mp4') }}" type="video/mp4">
-    </video>
-  </div>
-
-  </div>
   <!-- Page Content -->
 
      
@@ -93,24 +64,17 @@ video {
     
 
     <!-- The div where we will inject our map -->
-  
+    <div id="map"></div>
   
     <!-- API key -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/config.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/logic.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='js/bideojs.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-
-
-  <script>
-    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
-      window.location.protocol = "https";
-    }
-  </script>
 
 </body>
 
