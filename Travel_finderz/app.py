@@ -11,6 +11,15 @@ def index():
 def travel():
     return render_template('map.html')
 
+@app.route("/map-test")
+def test():
+    return render_template('map-test.html')
+
+
+@app.route("/newyork")
+def newyork():
+    return render_template('newyork.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
