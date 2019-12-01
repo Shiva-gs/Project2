@@ -6,5 +6,8 @@ After you pull the latest code please follow below instructions:
 4. Copy the local host and execute from browser, note - please clean up session to reflect latest change if you modify .jsp
 5. Upon Location and Category collection - json is printed in console log
 6. The pointers are plotted in OpenStreet map
+7. Welcome screen stream video and load images
+8. On click of GotoApp get to the data information
+
 
 
