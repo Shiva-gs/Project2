@@ -1,177 +1,58 @@
-function buildMap(sample,catType)
-{
-  // clean the previous markings
-  //map.off();
-  //map.remove();
-  var container = L.DomUtil.get('map');
-      if(container != null){
-        container._leaflet_id = null;
-      }
-
-  var map = L.map("map", {
-    center: [sample[0].geometry.location.lat, sample[0].geometry.location.lng],
-    zoom: 13
-  });
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-  maxZoom: 18,
-  id: "mapbox.streets"
-}).addTo(map);
-
-  
-  console.log("Printed the map")
-  console.log(Object.keys(sample).length);
-  //console.log(sample.geometry) 
-  //sampleNames.forEach((sample) => {
-    //console.log(sample);
-    console.log(sample) 
-
-  
-    for (var i = 0; i < sample.length; i++) {
-      var city = sample[i];
-      console.log(city.geometry.location) 
-      console.log("Printed Geometry")
-      L.marker([city.geometry.location.lat, city.geometry.location.lng])
-        .bindPopup("<h1> " + city.location + " </h1> <hr> <h3> "+ " " + city.target_type + ": " + " <br>"+ city.name + " <br> " + " Rating: "+ city.rating + " </h3>")
-        .addTo(map);
-
-        // change video based on location
-        var vide = document.getElementById("video");
-        // if location changes change the video 
-        if (catType == "Location") {
-
-        if (city.location == 'New York') {
-          vide.src="https://player.vimeo.com/video/310197402?autoplay=1&loop=1&portrait=0";
-        }
-         else if (city.location == 'Paris') {
-            vide.src = "https://player.vimeo.com/video/309904894?autoplay=1&loop=1&title=0&byline=0&portrait=0";
-          }
-           else if (city.location == 'London') {
-            vide.src="https://player.vimeo.com/video/327224386?autoplay=1&loop=1&badge=0";
-           }
-           else if (city.location == 'Singapore') {
-            vide.src="https://player.vimeo.com/video/343919740?autoplay=1&loop=1&title=0&byline=0&portrait=0";
-           }
-           else if (city.location == 'Bangkok') {
-            vide.src="https://player.vimeo.com/video/71887368?autoplay=1&loop=1&portrait=0";
-           }
-           else if (city.location == 'Dubai') {
-            vide.src="https://player.vimeo.com/video/317975904?autoplay=1&loop=1&title=0&byline=0&portrait=0";
-           }
-          } // end of category check 
-
-    } // end of for loop
-
-}
-
-function init() {
-  console.log("in init");
-  
-   
-  // Grab a reference to the dropdown select element
-  var selector = d3.select("#selDataset");
-  var cat_selector = d3.select("#selCategory");
-  var ds_selector = d3.select("#selDataSource");
-
-  // Use the list of sample location to populate the select options
-  d3.json("/locations").then((sampleNames) => {
-    sampleNames.forEach((sample) => {
-      selector
-        .append("option")
-        .text(sample)
-        .property("value", sample);
-    });
+# import necessary libraries
+import requests
+import json
+import pandas as pd
+import pymongo
+import json
+import os
+from flask import Flask, jsonify, render_template
+import getCityData
 
 
-  });
+# create instance of Flask app
+app = Flask(__name__, template_folder='.')
 
-    // ..  Use the list of sample category to populate the select options
-    d3.json("/category").then((sampleNames) => {
-      sampleNames.forEach((sample) => {
-        console.log("sample"+sample);
-        cat_selector
-          .append("option")
-          .text(sample)
-          .property("value", sample);
-      });
-  
-    });
+conn = 'mongodb://localhost:27017'
+travel = pymongo.MongoClient(conn)
+db = travel.traveldata
 
+# List of dictionaries
+locations = db.location.find() 
+loc_df = pd.DataFrame(list(locations))
 
-    
-}
-function optionChanged(newSample) {
-  // Fetch new data each time a new sample is selected
-  //buildCharts(newSample);
-  //buildMetadata(newSample);
-  //console.log(newSample);
+targets = db.target_type.find() 
+target_df = pd.DataFrame(list(targets))
 
+# create route that renders index.html template
+@app.route("/")
+def welcome():
 
+    return render_template("welcome.html")
 
-var e = document.getElementById("selCategory");
+# create route that renders index.html template
+@app.route("/index")
+def index():
 
-var category = e.options[e.selectedIndex].text;
-console.log(category);
-console.log(location);
+    return render_template("index.html")
 
+@app.route("/locations")
+def locations():
+    """Return a list of locations."""
 
+    # Return a list of the column location (locations)
+    return jsonify(list(loc_df['name']))
 
-console.log("/citydata/"+newSample+","+ category);
-  d3.json("/citydata/"+newSample+","+category).then((sampleNames) => {
-    sampleNames.forEach((sample) => {
-      //console.log(sample);
-    });
+@app.route("/category")
+def category():
+    """Return a list of Target type."""
+    # Return a list of the column category  
+    return jsonify(list(target_df['target_type']))
 
-    buildMap(sampleNames,"Location");
-  });
-}
+@app.route("/citydata/<location>,<targe_type>")
+def citydata(location,targe_type):
+    city_data = getCityData.get_data(location,targe_type)
+    df= city_data.drop(['_id'], axis=1)
+    return df.to_json(orient='records') 
 
-function optionChanged1(newSample) {
-  // Fetch new data each time a new sample is selected
-  //buildCharts(newSample);
-  //buildMetadata(newSample);
-  //console.log(newSample);
-
-
-
-var e = document.getElementById("selDataset");
-
-var location = e.options[e.selectedIndex].text;
-
-//console.log("/citydata/"+location+","+ newSample);
-  d3.json("/citydata/"+location+","+newSample).then((sampleNames) => {
-
-    sampleNames.forEach((sample) => {
-      //console.log(sample);
-      //console.log(sample.geometry.location.lat)
-      //console.log(sample.geometry.location.lng) 
-    });
-    // Use the first sample from the list to build the initial plots
-    //const firstSample = sampleNames[0];
-    //buildCharts(firstSample);
-    //buildMetadata(firstSample);
-    //console.log("Calling Map refresh ");
-    buildMap(sampleNames,"Target");
-  });
-  
-
-
-}
- 
-// Creating map object
-var map = L.map("map", {
-  center: [0, 0],
-  zoom: 1
-});
-
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-  maxZoom: 18,
-  id: "mapbox.streets"
-}).addTo(map);
-
-
-
-// Initialize the dashboard
-init();
+if __name__ == "__main__":
+    app.run(debug=True)
