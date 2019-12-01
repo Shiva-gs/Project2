@@ -1,0 +1,83 @@
+/* !
+ * Start Bootstrap - The Big Picture (https://startbootstrap.com/template-overviews/the-big-picture)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-the-big-picture/blob/master/LICENSE)
+ */
+/* body {
+  background: url('https://images.trvl-media.com/media/content/expus/graphics/launch/home/tvly/150324_flights-hero-image_1330x742.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+} */
+
+
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+* {
+  margin: 0; padding: 0;
+}
+
+#container {
+  overflow: hidden;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+#background_video {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  height: 100%; width: 100%;
+}
+#video_cover {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: url('video_cover.jpeg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+#video_controls {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#play img {
+  width: 100px;
+}
+#pause img {
+  width: 90px;
+}
+#pause {
+  display: none;
+}
+@media (min-width: 768px) {
+  #video_controls {
+    display: none;
+  }
+}
+/* Demo page specific styles */
+
+#container {
+  height: 100%;
+}
+#overlay {
+  position: absolute;
+  top: 0; right: 0; left: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
