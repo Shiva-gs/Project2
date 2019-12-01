@@ -1,4 +1,4 @@
-function buildMap(sample)
+function buildMap(sample,catType)
 {
   // clean the previous markings
   //map.off();
@@ -19,10 +19,6 @@ function buildMap(sample)
   id: "mapbox.streets"
 }).addTo(map);
 
-// .bindPopup("<h1>" + "New York" + "</h1> <hr> <h3>Restaurant " + "The Lowell Hotel" + "</h3>")
-//L.marker([40.7657325, -73.9692262])
- // .bindPopup("<h1>" + "New York" + "</h1> <hr> <h3>Restaurant " + "The Lowell Hotel" + "</h3>")
-  //.addTo(map);
   
   console.log("Printed the map")
   console.log(Object.keys(sample).length);
@@ -39,7 +35,33 @@ function buildMap(sample)
       L.marker([city.geometry.location.lat, city.geometry.location.lng])
         .bindPopup("<h1> " + city.location + " </h1> <hr> <h3> "+ " " + city.target_type + ": " + " <br>"+ city.name + " <br> " + " Rating: "+ city.rating + " </h3>")
         .addTo(map);
-    }
+
+        // change video based on location
+        var vide = document.getElementById("video");
+        // if location changes change the video 
+        if (catType == "Location") {
+
+        if (city.location == 'New York') {
+          vide.src="https://player.vimeo.com/video/310197402?autoplay=1&loop=1&portrait=0";
+        }
+         else if (city.location == 'Paris') {
+            vide.src = "https://player.vimeo.com/video/309904894?autoplay=1&loop=1&title=0&byline=0&portrait=0";
+          }
+           else if (city.location == 'London') {
+            vide.src="https://player.vimeo.com/video/327224386?autoplay=1&loop=1&badge=0";
+           }
+           else if (city.location == 'Singapore') {
+            vide.src="https://player.vimeo.com/video/343919740?autoplay=1&loop=1&title=0&byline=0&portrait=0";
+           }
+           else if (city.location == 'Bangkok') {
+            vide.src="https://player.vimeo.com/video/71887368?autoplay=1&loop=1&portrait=0";
+           }
+           else if (city.location == 'Dubai') {
+            vide.src="https://player.vimeo.com/video/317975904?autoplay=1&loop=1&title=0&byline=0&portrait=0";
+           }
+          } // end of category check 
+
+    } // end of for loop
 
 }
 
@@ -91,6 +113,9 @@ var e = document.getElementById("selCategory");
 
 var category = e.options[e.selectedIndex].text;
 console.log(category);
+console.log(location);
+
+
 
 console.log("/citydata/"+newSample+","+ category);
   d3.json("/citydata/"+newSample+","+category).then((sampleNames) => {
@@ -98,7 +123,7 @@ console.log("/citydata/"+newSample+","+ category);
       //console.log(sample);
     });
 
-    buildMap(sampleNames);
+    buildMap(sampleNames,"Location");
   });
 }
 
@@ -113,7 +138,6 @@ function optionChanged1(newSample) {
 var e = document.getElementById("selDataset");
 
 var location = e.options[e.selectedIndex].text;
-console.log(location);
 
 //console.log("/citydata/"+location+","+ newSample);
   d3.json("/citydata/"+location+","+newSample).then((sampleNames) => {
@@ -128,7 +152,7 @@ console.log(location);
     //buildCharts(firstSample);
     //buildMetadata(firstSample);
     //console.log("Calling Map refresh ");
-    buildMap(sampleNames);
+    buildMap(sampleNames,"Target");
   });
   
 
