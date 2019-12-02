@@ -1,3 +1,15 @@
+//Put this in body tag 
+<div id="legend">
+  <h4 class = "test-center> Travel Project </h4>
+<svg height = "270" width = "100">
+  <rect x = "10" y = "10" height = "30" width = "50"
+  style = "stroke-width:4; stroke: deeppink; fill:yellow;fill-opacity:0.5;"/> 
+<line x1 = "10" y1 = "50" x2 = "40" y2 = "10"
+style="stroke: peru; stroke-width:2;"/>
+<circle cx="30" cy="95" r="15" style = "stroke-width:4; stroke;deeppink; stroke-dasharray: 5.5; fill:cyan; fill-opacity:0.5;"/>
+<text x = "70" y="15" style="font-family: sans-serif; font-size:16px;"> Pipeline </text>
+</svg>
+</div>
 //Bar Markers 
 var bar_markers = [
   {
@@ -204,9 +216,7 @@ var bar_markers = [
     "cost": "$$"
   }
 ];
-
 //Restaurant Markers
-
 var rest_markers = [
   {
     "name": "Upstate",
@@ -597,70 +607,116 @@ var attraction_markers = [
   }
 ];
 
-// API key
-const API_KEY = "pk.eyJ1IjoicGphaXNpbmdoYW5pIiwiYSI6ImNrMnBlbXczZTAzaTAzY3BnZ3BjcnA0MjYifQ.cR4ZtT0s7z6RSCfsl2vTMg";
+var barMarks = [];
+var restMarks = [];
+var attracMarks =[];
+
+for ( var i=0; i < bar_markers.length; ++i )
+  // Setting the marker radius for the city by passing population into the markerSize function
+  barMarks.push(
+    L.marker(bar_markers[i].lat, bar_markers[i].long, {icon: myIcon1}).bindPopup("<h1>" + bar_markers[i].name + "</h1>")
+    );
+  
+  var barLayer = L.layerGroup(barMarks);
 
 
-var map = L.map( 'map', {
-  center: [40.7128, -74.0059],
-  minZoom: 2,
-  zoom: 2,
-})
+  for ( var i=0; i < rest_markers.length; ++i )
+  // Setting the marker radius for the city by passing population into the markerSize function
+  restMarks.push(
+    L.marker(rest_markers[i].lat, rest_markers[i].long, {icon: myIcon2}).bindPopup("<h1>" + rest_markers[i].name + "</h1>")
+    );
+  
+  var restLayer = L.layerGroup(restMarks);
 
- L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-     maxZoom: 18,
-     id: 'mapbox.streets',
-     accessToken: API_KEY
- }).addTo(map);
 
- // // Initialize all of the LayerGroups we'll be using
- var layers = {
+
+  for ( var i=0; i < attraction_markers.length; ++i )
+  // Setting the marker radius for the city by passing population into the markerSize function
+  attracMarks.push(
+    L.marker(attraction_markers[i].lat, attraction_markers[i].long, {icon: myIcon3}).bindPopup("<h1>" + attraction_markers[i].attraction + "</h1>")
+    );
+  
+  var attracLayer = L.layerGroup(attracMarks);
+
+var layers = {
   Attractions: new L.LayerGroup(),
   Restaurants: new L.LayerGroup(),
   Bars: new L.LayerGroup(),
-};
+}; 
 
 var overlays = {
-  "attractions": layers.Attractions,
+  "attractions": layers.Attractions, 
   "restaurants": layers.Restaurants,
   "bars": layers.Bars
 };
-
-// // Create a control for our layers, add our overlay layers to it
-L.control.layers(null, overlays).addTo(map);
-
-// // Create a legend to display information about our map
-var info = L.control({
-  position: "bottomright"
+L.control.layers(null,overlays).addTo(map);
+map.on('overlayadd',function(e){
+  alert(e.name + "was just turned on");
 });
 
-// // When the layer control is added, insert a div with the class of "legend"
-info.onAdd = function() {
-  var div = L.DomUtil.create("div", "legend");
-  return div;
-};
-// // Add the info legend to the map
-info.addTo(map);
+map.on('overlayremove',function(e){
+  alert(e.name + "was just turned off");
+});
+
+// Create map object and set default layers
+var myMap = L.map("map", {
+  center: [42.2276, -72.2137],
+  zoom: 7,
+  layers: [streetmap, overlays]
+});
+
+var streetmap = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.streets"
+}).addTo(map);
 
 
-// var myURL = jQuery( 'script[src$="leaf-demo.js"]' ).attr( 'src' ).replace( 'leaf-demo.js', '' )
 
+
+// info.onAdd = function() {
+//   var div = L.DomUtil.create('div','legend'),;
+//   return div; 
+// }; 
+// info.addTo(map); 
+var myURL = jQuery( 'script[src$="leaf-demo.js"]' ).attr( 'src' ).replace( 'leaf-demo.js', '' )
+var myIcon1 = L.icon({
+  iconUrl: myURL + 'images/pin29.png',
+  iconRetinaUrl: myURL + 'images/pin30.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+})
+var myIcon2 = L.icon({
+  iconUrl: myURL + 'images/pin22.png',
+  iconRetinaUrl: myURL + 'images/pin26.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+})
+var myIcon3 = L.icon({
+  iconUrl: myURL + 'images/pin17.png',
+  iconRetinaUrl: myURL + 'images/pin19.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+})
 for ( var i=0; i < bar_markers.length; ++i )
 {
- L.marker( [bar_markers[i].lat, bar_markers[i].long]).bindPopup("<H2>" + bar_markers[i].name + "</h2>").addTo(map);
-};
-
-
-for ( var i=0; i < rest_markers.length; ++i ) 
-{
-   L.marker([rest_markers[i].lat, rest_markers[i].long])
-      .bindPopup( '<a href="' + rest_markers[i].url + '" target="_blank">' + rest_markers[i].name + '</a>' )
-      .addTo(map);
+ var bar_mark = L.marker( [bar_markers[i].lat, bar_markers[i].long], {icon: myIcon1} )
+  .bindPopup( '<a href=www.yelp.com"' + bar_markers[i].url + '" target="_blank">' + bar_markers[i].name + '</a>' )
+  .addTo( map );
+ 
 }
-
+for ( var i=0; i < rest_markers.length; ++i )
+{
+ L.marker( [rest_markers[i].lat, rest_markers[i].long], {icon: myIcon2} )
+  .bindPopup( '<a href="' + rest_markers[i].url + '" target="_blank">' + rest_markers[i].name + '</a>' )
+  .addTo( map );
+}
 for ( var i=0; i < attraction_markers.length; ++i )
 {
- L.marker( [attraction_markers[i].lat, attraction_markers[i].long]).bindPopup("<H1>" + attraction_markers[i].attraction + "</h1>").addTo(map);
-};
-
+ L.marker( [attraction_markers[i].lat, attraction_markers[i].long], {icon: myIcon3} )
+  .bindPopup( '<a href="' + attraction_markers[i].url + '" target="_blank">' + attraction_markers[i].attraction + '</a>' )
+  .addTo( map );
+}
