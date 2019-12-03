@@ -10,5 +10,15 @@ Note:  Copy welcome.mp4 under /static/js folder
 7. Welcome screen stream video and load images
 8. On click of GotoApp get to the data information
 
+-- Note below folders and files are mandatory:
+static -- full folder 
+app.py
+getCityData.py
+index.html
+README -- instructions 
+setup.py
+static
+welcome.html
+
 
 
