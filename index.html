@@ -91,9 +91,7 @@
           <h5>SELECT Category:</h5>
           <select id="selCategory" onchange="optionChanged1(this.value)"></select>
           <h5>SELECT DataSource:</h5>
-          <select id="selDataSource" onchange="optionChanged(this.value)">
-            <option>Google</option>
-            <option>OtherResources</option>
+          <select id="selDataSource" onchange="DataSource(this.value)">
           </select>
         </div>
         
@@ -121,7 +119,14 @@
    
   <script src="{{ url_for('static', filename='js/vendor/jquery/jquery.min.js') }}"></script> 
   <script src="{{ url_for('static', filename='js/vendor/jquery/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='js/markers.js') }}" ></script>
+  <script src="{{ url_for('static', filename='js/leaf-demo.js') }}" ></script>  
+  
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>  
+
+ 
+  
 
 </body>
 
