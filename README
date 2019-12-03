@@ -1,5 +1,7 @@
 After you pull the latest code please follow below instructions:
 
+This is integrated app which uses Google, TripAdvisor, Yelp data.
+
 1. Edit setup.py to include GoogleAPI key
 2. Execute setup.py for one time dataset up, which renders data for all location and target types and stores in MongoDB
 Note:  Copy welcome.mp4 under /static/js folder
