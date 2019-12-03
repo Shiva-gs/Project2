@@ -65,14 +65,20 @@ function buildMap(sample,catType)
 
 }
 
-function init() {
-  console.log("in init");
+function init() { 
   
-   
+  //clear existing container
+  var container = L.DomUtil.get('map');
+  if(container != null){
+    container._leaflet_id = null;
+  }
+
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
   var cat_selector = d3.select("#selCategory");
   var ds_selector = d3.select("#selDataSource");
+
+  console.log("Setting DropDown Data");
 
   // Use the list of sample location to populate the select options
   d3.json("/locations").then((sampleNames) => {
@@ -97,17 +103,31 @@ function init() {
       });
   
     });
-
+ 
+    // datasource
+    {
+      ds_selector
+        .append("option")
+        .text("Google")
+        .property("value", "Google");
+    }
+    {
+      ds_selector
+        .append("option")
+        .text("OtherResources")
+        .property("value", "OtherResources");
+    }
 
     
 }
+// location change
 function optionChanged(newSample) {
-  // Fetch new data each time a new sample is selected
-  //buildCharts(newSample);
-  //buildMetadata(newSample);
-  //console.log(newSample);
 
-
+    //clear existing container
+    var container = L.DomUtil.get('map');
+    if(container != null){
+      container._leaflet_id = null;
+    }
 
 var e = document.getElementById("selCategory");
 
@@ -127,31 +147,24 @@ console.log("/citydata/"+newSample+","+ category);
   });
 }
 
+
+// for target type change
 function optionChanged1(newSample) {
-  // Fetch new data each time a new sample is selected
-  //buildCharts(newSample);
-  //buildMetadata(newSample);
-  //console.log(newSample);
 
-
+    //clear existing container
+    var container = L.DomUtil.get('map');
+    if(container != null){
+      container._leaflet_id = null;
+    }
 
 var e = document.getElementById("selDataset");
 
-var location = e.options[e.selectedIndex].text;
-
-//console.log("/citydata/"+location+","+ newSample);
+var location = e.options[e.selectedIndex].text; 
   d3.json("/citydata/"+location+","+newSample).then((sampleNames) => {
 
-    sampleNames.forEach((sample) => {
-      //console.log(sample);
-      //console.log(sample.geometry.location.lat)
-      //console.log(sample.geometry.location.lng) 
+    sampleNames.forEach((sample) => { 
     });
-    // Use the first sample from the list to build the initial plots
-    //const firstSample = sampleNames[0];
-    //buildCharts(firstSample);
-    //buildMetadata(firstSample);
-    //console.log("Calling Map refresh ");
+
     buildMap(sampleNames,"Target");
   });
   
@@ -159,11 +172,63 @@ var location = e.options[e.selectedIndex].text;
 
 }
  
-// Creating map object
-var map = L.map("map", {
-  center: [0, 0],
-  zoom: 1
-});
+
+
+function DataSource(value) { 
+ 
+var e = document.getElementById("selDataSource");
+var srcData = e.options[e.selectedIndex].text; 
+
+
+
+console.log(srcData);
+if(srcData == 'OtherResources')
+{
+  alert("Data OtherResources TripAdvisor, Yelp Etc ");
+  console.log("in Other Resources");
+ 
+  OtherSource(); 
+}
+else{
+  var container = L.DomUtil.get('map');
+  if(container != null){
+    container._leaflet_id = null;
+  }
+  var e = document.getElementById("selCategory");
+
+  var category = e.options[e.selectedIndex].text;
+  console.log(category);
+  console.log(location);
+  
+  var newSample = document.getElementById("selDataset").value;
+  console.log(newSample);
+  console.log("/citydata/"+newSample+","+ category);
+    d3.json("/citydata/"+newSample+","+category).then((sampleNames) => {
+      
+    // Creating map object
+    var map = L.map("map", {
+      center: [0, 0],
+      zoom: 1
+    });
+  
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.streets"
+  }).addTo(map);
+      buildMap(sampleNames,"Location");});
+      
+  //init();
+  console.log("in else logi");
+}
+
+}
+
+  // Creating map object
+  var map = L.map("map", {
+    center: [0, 0],
+    zoom: 1
+  });
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -171,7 +236,18 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   id: "mapbox.streets"
 }).addTo(map);
 
+function OtherSource()
+{
+  // clear map
+  var container = L.DomUtil.get('map');
+if(container != null){
+  container._leaflet_id = null;
+}
 
+var othsrc = new othersources(); 
+//othsrc.init();
+
+}
 
 // Initialize the dashboard
 init();
