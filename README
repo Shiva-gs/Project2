@@ -8,7 +8,7 @@ Note:  Copy welcome.mp4 under /static/js folder
 3. Execute app.py - Note: remove the cache rm -rf __pycache_ before relauncing the app
 4. Copy the local host and execute from browser, note - please clean up session to reflect latest change if you modify .jsp
 5. Upon Location and Category collection - json is printed in console log
-6. The pointers are plotted in OpenStreet map
+6. The pointers are plotted in OpenStreet map with appropriate data
 7. Welcome screen stream video and load images
 8. On click of GotoApp get to the data information
 
